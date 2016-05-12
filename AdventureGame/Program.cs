@@ -10,29 +10,31 @@ namespace AdventureGame
 
         static void Main(string[] args)
         {
-            Player player = new Player();
             Inventory inventory = new Inventory();
-            player = resetGame(player);
+            Player player = resetGame(player);
             
             mainLoop(player);
-
         }
         static Player resetGame(Player _player)
         {
-
             Console.WriteLine(_player.spawnPlayer());
             Console.ReadLine();
             return _player;
         }
         static void mainLoop(Player _player)
         {
-            Console.ReadLine();
-            doStuff();
-            mainLoop(_player);
+            try {
+                do {
+                    var playerInput = Console.ReadLine();
+                } while (NextPlayerInput(playerInput));
+            } catch {
+                
+            }
         }
 
-        private static void doStuff()
+        private static bool NextPlayerInput(string playerInput)
         {
+            // return false to exit game
             throw new NotImplementedException();
         }
 
