@@ -56,16 +56,6 @@
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
-      <Project>{884bf4b3-5271-4883-a5e2-4d2df8571683}</Project>
-      <Name>ClassLibrary1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ConsoleApplication1\ConsoleApplication1.csproj">
-      <Project>{aae125e4-7fdf-4142-9686-7611369f5039}</Project>
-      <Name>ConsoleApplication1</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

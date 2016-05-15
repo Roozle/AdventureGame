@@ -11,31 +11,81 @@ namespace AdventureGame
         static void Main(string[] args)
         {
             Inventory inventory = new Inventory();
-            Player player = resetGame(player);
-            
+            Player player = new Player(); 
+            resetGame(player);            
             mainLoop(player);
         }
         static Player resetGame(Player _player)
         {
             Console.WriteLine(_player.spawnPlayer());
-            Console.ReadLine();
             return _player;
         }
         static void mainLoop(Player _player)
         {
-            try {
-                do {
-                    var playerInput = Console.ReadLine();
-                } while (NextPlayerInput(playerInput));
-            } catch {
+            try 
+            {
+                string playerInput;
+
+                do 
+                {
+                    playerInput = Console.ReadLine();
+                    switch (playerInput.ToUpper())
+                    {
+                        case "CHECK":
+                            _player.check(_player);
+                            break;
+                        case "HELP":
+                            _player.help(_player);
+                            break;
+                        case "MOVE":
+                            Console.WriteLine("I also need a direction");
+                            break;
+                        case "MOVE NORTH":
+                            _player.move(_player, "NORTH");
+                            break;
+                        case "MOVE EAST":
+                            _player.move(_player, "EAST");
+                            break;
+                        case "MOVE SOUTH":
+                            _player.move(_player, "SOUTH");
+                            break;
+                        case "MOVE WEST":
+                            _player.move(_player, "WEST");
+                            break;
+                        case "LOOK":
+                            Console.WriteLine("I also need a direction");
+                            break;
+                        case "LOOK NORTH":
+                            _player.look(_player, "NORTH");
+                            break;
+                        case "LOOK EAST":
+                            _player.look(_player, "EAST");
+                            break;
+                        case "LOOK SOUTH":
+                            _player.look(_player, "SOUTH");
+                            break;
+                        case "LOOK WEST":
+                            _player.look(_player, "WEST");
+                            break;
+                        case "TERMINATE":
+                            _player.terminate(_player);
+                            break;
+                        default:
+                            Console.WriteLine("Please type a valid command, use HELP for a list of commands");
+                            break;
+                    }
+                } 
+                while (NextPlayerInput(playerInput));
+            } 
+            catch 
+            {
                 
             }
         }
 
         private static bool NextPlayerInput(string playerInput)
         {
-            // return false to exit game
-            throw new NotImplementedException();
+            return true;
         }
 
     }
