@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 
 
 namespace AdventureGame
@@ -16,6 +15,8 @@ namespace AdventureGame
             Moving, 
             Busy
         };
+        public Rooms rooms = new Rooms();
+        public DataTable roomTable = new DataTable();
         public Inventory inventory = new Inventory();
         public Dictionary<string, int> playerInventory = new Dictionary<string, int>();
         public PlayerStateEnum playerState;
@@ -35,32 +36,7 @@ namespace AdventureGame
             return "Game reset";
         }
 
-        internal void move(Player _player, string p)
-        {
-            throw new NotImplementedException();
-        }
 
-        internal void look(Player _player, string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void check(Player _player)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void help(Player _player)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void terminate(Player _player)
-        {
-            Console.WriteLine("Are you sure you want to terminate? This will reset your game, Y/N?");
-            Console.ReadLine();
-
-        }
     }
 
 }

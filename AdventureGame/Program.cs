@@ -1,89 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 
 namespace AdventureGame
 {
-    class Program
-    { 
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            var player = new Player();
+            var rooms = new Rooms();
+            var roomTable = new DataTable();
+            var instructions = new Instructions();
+            ResetGame(player);
+            MainLoop(player, rooms, roomTable, instructions);
+        }
 
-        static void Main(string[] args)
+        public static Player ResetGame(Player player)
         {
-            Inventory inventory = new Inventory();
-            Player player = new Player();
-            Rooms rooms = new Rooms();
-            DataTable roomTable = new DataTable();
-            resetGame(player,rooms, roomTable);            
-            mainLoop(player, roomTable);
+            Console.WriteLine(player.spawnPlayer());
+            new Rooms().initialiseRooms(player);
+            return player;
         }
-        static Player resetGame(Player _player, Rooms _rooms,DataTable _roomTable)
+
+        private static void MainLoop(Player player, Rooms rooms, DataTable _roomTable, Instructions instructions)
         {
-            Console.WriteLine(_player.spawnPlayer());
-            _rooms.initialiseRooms(_roomTable);
-            return _player;
-        }
-        static void mainLoop(Player _player, DataTable _roomTable)
-        {
-            try 
+            try
             {
                 string playerInput;
 
-                do 
+                do
                 {
                     playerInput = Console.ReadLine();
                     switch (playerInput.ToUpper())
                     {
                         case "CHECK":
-                            _player.check(_player);
+                            instructions.check(player);
                             break;
                         case "HELP":
-                            _player.help(_player);
+                            instructions.help(player);
                             break;
                         case "MOVE":
                             Console.WriteLine("I also need a direction");
                             break;
                         case "MOVE NORTH":
-                            _player.move(_player, "NORTH");
+                            instructions.action(player, _roomTable, "NORTH", "MOVE");
                             break;
                         case "MOVE EAST":
-                            _player.move(_player, "EAST");
+                            instructions.action(player, _roomTable, "EAST", "MOVE");
                             break;
                         case "MOVE SOUTH":
-                            _player.move(_player, "SOUTH");
+                            instructions.action(player, _roomTable, "SOUTH", "MOVE");
                             break;
                         case "MOVE WEST":
-                            _player.move(_player, "WEST");
+                            instructions.action(player, _roomTable, "WEST", "MOVE");
                             break;
                         case "LOOK":
-                            Console.WriteLine("I also need a direction");
+                            instructions.action(player, _roomTable, "");
                             break;
                         case "LOOK NORTH":
-                            _player.look(_player, "NORTH");
+                            instructions.action(player, _roomTable, "NORTH");
                             break;
                         case "LOOK EAST":
-                            _player.look(_player, "EAST");
+                            instructions.action(player, _roomTable, "EAST");
                             break;
                         case "LOOK SOUTH":
-                            _player.look(_player, "SOUTH");
+                            instructions.action(player, _roomTable, "SOUTH");
                             break;
                         case "LOOK WEST":
-                            _player.look(_player, "WEST");
+                            instructions.action(player, _roomTable, "WEST");
                             break;
                         case "TERMINATE":
-                            _player.terminate(_player);
+                            instructions.terminate(player, rooms, _roomTable, instructions);
                             break;
                         default:
                             Console.WriteLine("Please type a valid command, use HELP for a list of commands");
                             break;
                     }
-                } 
-                while (NextPlayerInput(playerInput));
-            } 
-            catch 
+                } while (NextPlayerInput(playerInput));
+            }
+            catch
             {
-                
             }
         }
 
@@ -91,7 +87,5 @@ namespace AdventureGame
         {
             return true;
         }
-
     }
-            
 }
