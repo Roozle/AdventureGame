@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -11,16 +12,19 @@ namespace AdventureGame
         static void Main(string[] args)
         {
             Inventory inventory = new Inventory();
-            Player player = new Player(); 
-            resetGame(player);            
-            mainLoop(player);
+            Player player = new Player();
+            Rooms rooms = new Rooms();
+            DataTable roomTable = new DataTable();
+            resetGame(player,rooms, roomTable);            
+            mainLoop(player, roomTable);
         }
-        static Player resetGame(Player _player)
+        static Player resetGame(Player _player, Rooms _rooms,DataTable _roomTable)
         {
             Console.WriteLine(_player.spawnPlayer());
+            _rooms.initialiseRooms(_roomTable);
             return _player;
         }
-        static void mainLoop(Player _player)
+        static void mainLoop(Player _player, DataTable _roomTable)
         {
             try 
             {

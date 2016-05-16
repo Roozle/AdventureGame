@@ -27,16 +27,13 @@ namespace AdventureGame
             //reset state
             playerState = PlayerStateEnum.Alive;
             //reset map position
-            playerXPos = 0;
-            playerYPos = 0;
+            playerXPos = 5;
+            playerYPos = 5;
 
             inventory.initInventory(playerInventory);
 
             return "Game reset";
         }
-
-
-
 
         internal void move(Player _player, string p)
         {
