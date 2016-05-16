@@ -14,7 +14,7 @@ namespace AdventureGame
             Sleeping, 
             Moving, 
             Busy
-        };
+        }
         public Rooms rooms = new Rooms();
         public DataTable roomTable = new DataTable();
         public Inventory inventory = new Inventory();

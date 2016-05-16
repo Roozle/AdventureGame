@@ -8,22 +8,20 @@ namespace AdventureGame
         private static void Main(string[] args)
         {
             var player = new Player();
-            var rooms = new Rooms();
-            var roomTable = new DataTable();
-            var instructions = new Instructions();
             ResetGame(player);
-            MainLoop(player, rooms, roomTable, instructions);
+            MainLoop(player);
         }
 
         public static Player ResetGame(Player player)
         {
             Console.WriteLine(player.spawnPlayer());
-            new Rooms().initialiseRooms(player);
+            new Rooms().InitialiseRooms(player);
             return player;
         }
 
-        private static void MainLoop(Player player, Rooms rooms, DataTable _roomTable, Instructions instructions)
+        private static void MainLoop(Player player)
         {
+            Instructions instructions = new Instructions();
             try
             {
                 string playerInput;
@@ -34,43 +32,43 @@ namespace AdventureGame
                     switch (playerInput.ToUpper())
                     {
                         case "CHECK":
-                            instructions.check(player);
+                            instructions.Check(player);
                             break;
                         case "HELP":
-                            instructions.help(player);
+                            instructions.Help(player);
                             break;
                         case "MOVE":
                             Console.WriteLine("I also need a direction");
                             break;
                         case "MOVE NORTH":
-                            instructions.action(player, _roomTable, "NORTH", "MOVE");
+                            instructions.action(player, "NORTH", "MOVE");
                             break;
                         case "MOVE EAST":
-                            instructions.action(player, _roomTable, "EAST", "MOVE");
+                            instructions.action(player, "EAST", "MOVE");
                             break;
                         case "MOVE SOUTH":
-                            instructions.action(player, _roomTable, "SOUTH", "MOVE");
+                            instructions.action(player, "SOUTH", "MOVE");
                             break;
                         case "MOVE WEST":
-                            instructions.action(player, _roomTable, "WEST", "MOVE");
+                            instructions.action(player, "WEST", "MOVE");
                             break;
                         case "LOOK":
-                            instructions.action(player, _roomTable, "");
+                            instructions.action(player,"", "");
                             break;
                         case "LOOK NORTH":
-                            instructions.action(player, _roomTable, "NORTH");
+                            instructions.action(player, "NORTH");
                             break;
                         case "LOOK EAST":
-                            instructions.action(player, _roomTable, "EAST");
+                            instructions.action(player, "EAST");
                             break;
                         case "LOOK SOUTH":
-                            instructions.action(player, _roomTable, "SOUTH");
+                            instructions.action(player, "SOUTH");
                             break;
                         case "LOOK WEST":
-                            instructions.action(player, _roomTable, "WEST");
+                            instructions.action(player, "WEST");
                             break;
                         case "TERMINATE":
-                            instructions.terminate(player, rooms, _roomTable, instructions);
+                            instructions.Terminate(player, instructions);
                             break;
                         default:
                             Console.WriteLine("Please type a valid command, use HELP for a list of commands");

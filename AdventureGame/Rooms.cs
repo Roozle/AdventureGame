@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 
 namespace AdventureGame
 {
@@ -14,37 +10,44 @@ namespace AdventureGame
             Complete,
             InProgress,
             SecondLook
-        };
-       public class individualRoom
-        {
-          public  string description { get; set; }
-          public string distanceDescription {get;set;}
-          public string secondDescription {get;set;}
-          public RoomStateEnum roomState {get;set;}
         }
-    public DataTable initialiseRooms(Player _player)
+       public class IndividualRoom
+        {
+          public string Description { get; set; }
+          public string DistanceDescription {get;set;}
+          public string SecondDescription {get;set;}
+          public string ThirdDescription { get; set; }
+          public RoomStateEnum RoomState {get;set;}
+          public bool Populated { get; set; }
+          public int CheckCounter { get; set; }
+        }
+    public DataTable InitialiseRooms(Player player)
     {
-	   _player.roomTable.Columns.Add("PlayerX", typeof(int));
-	   _player.roomTable.Columns.Add("PlayerY", typeof(int));
-	   _player.roomTable.Columns.Add("RoomClass", typeof(individualRoom));
+	   player.roomTable.Columns.Add("PlayerX", typeof(int));
+	   player.roomTable.Columns.Add("PlayerY", typeof(int));
+	   player.roomTable.Columns.Add("RoomClass", typeof(IndividualRoom));
 
-	    
-        _player.roomTable.Rows.Add(5, 5, new individualRoom
+        player.roomTable.Rows.Add(5, 5, new IndividualRoom
         {
-            distanceDescription = "There is an open field, smoke plumes from the EAST, to the SOUTH is an old cabin, to the WEST, the charred remains of a forest",
-            description = "You are in an open field, the ground appears scorched",
-            secondDescription = "The faint smell of burning lingers in the air",
-            roomState = RoomStateEnum.Fresh
+            DistanceDescription = "There is an open field, smoke plumes from the EAST, to the SOUTH is an old cabin, to the WEST, the charred remains of a forest",
+            Description = "You are in an open field, the ground appears scorched",
+            SecondDescription = "The faint smell of burning lingers in the air",
+            ThirdDescription = "You feel an enormous sense of wellbeing, but something inside you tells you it's time to move on",
+            RoomState = RoomStateEnum.Fresh,
+            Populated = true,
+            CheckCounter = 0
         });
-        _player.roomTable.Rows.Add(6, 5, new individualRoom
+        player.roomTable.Rows.Add(6, 5, new IndividualRoom
         {
-            distanceDescription = "You see a bright fire in the distance, an old wooden shed extends a cabin to the SOUTH",
-            description = "A small fire burns brightly, brighter than one would expect given its size, the surrounding area is badly scorched",
-            secondDescription = "This is all that remains of the fire that destroyed your surroundings",
-            roomState = RoomStateEnum.Fresh
+            DistanceDescription = "You see a bright fire in the distance, an old wooden shed extends a cabin to the SOUTH",
+            Description = "A small fire burns brightly, brighter than one would expect given its size, the surrounding area is badly scorched",
+            SecondDescription = "This is all that remains of the fire that destroyed your surroundings",
+            RoomState = RoomStateEnum.Fresh,
+            Populated = true,
+            CheckCounter = 0
         });
 
-	    return _player.roomTable;
+	    return player.roomTable;
     }
 
 

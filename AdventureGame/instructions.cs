@@ -1,97 +1,100 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 
 namespace AdventureGame
 {
     class Instructions
     {
 
-        internal void action(Player _player,DataTable _roomTable, string p = "", string _action ="LOOK")
+        internal void action(Player player, string p = "", string _action ="LOOK")
         {
-            int playerXPos = _player.playerXPos;
-            int playerYPos = _player.playerYPos;
-            
+            int playerXPos = player.playerXPos;
+            int playerYPos = player.playerYPos;
 
-            switch(p)
+
+            switch (p)
             {
                 case "NORTH":
-                    playerYPos = _player.playerYPos + 1;
+                    playerYPos = player.playerYPos + 1;
                     break;
                 case "EAST":
-                    playerXPos = _player.playerXPos + 1;
+                    playerXPos = player.playerXPos + 1;
                     break;
                 case "SOUTH":
-                    playerYPos = _player.playerYPos - 1;
+                    playerYPos = player.playerYPos - 1;
                     break;
                 case "WEST":
-                    playerYPos = _player.playerYPos - 1;
-                    break;
-                default:
+                    playerYPos = player.playerYPos - 1;
                     break;
             }
-            DataRow[] result = _roomTable.Select("PlayerX = " + playerXPos + " AND PlayerY = " + playerYPos);
-            if(_action == "MOVE")
+
+            DataRow[] result = player.roomTable.Select("PlayerX = " + playerXPos + " AND PlayerY = " + playerYPos);
+            if (result.Length < 1)
             {
-                if (result == null)
+                if (_action == "MOVE")
                 {
-                    Console.WriteLine("You hear a voice... DARE NOT TRAVEL THERE... you step back, afraid");
+                    Console.WriteLine("You hear a voice... YOU DARE NOT TRAVEL THERE... you step back, afraid");
+
                 }
                 else
                 {
-                    _player.playerXPos = playerXPos;
-                    _player.playerYPos = playerYPos;
+                    Console.WriteLine("You see nothing but a lack of creativity");
 
-
-                    foreach (DataRow row in result)
-                    {
-
-                        Rooms.individualRoom iR = new Rooms.individualRoom();
-                        iR = row[2] as Rooms.individualRoom;
-
-                        Console.WriteLine("{0}, {1}, {2}", row[0], row[1], iR.description);
-                    }
                 }
             }
             else
-            //just looking 
             {
                 foreach (DataRow row in result)
                 {
+                    if (_action == "MOVE")
+                    {
+                            player.playerXPos = playerXPos;
+                            player.playerYPos = playerYPos;
 
-                    Rooms.individualRoom iR = new Rooms.individualRoom();
-                    iR = row[2] as Rooms.individualRoom;
+                            Rooms.IndividualRoom r = new Rooms.IndividualRoom();
+                            r = row[2] as Rooms.IndividualRoom;
 
-                    Console.WriteLine("{0}, {1}, {2}", row[0], row[1], iR.distanceDescription);
-                }
+                            Console.WriteLine("{0}, {1}, {2}", row[0], row[1], r.Description);
+                    }
+                    else
+                    //just looking 
+                    {
+                            Rooms.IndividualRoom r = new Rooms.IndividualRoom();
+                            r = row[2] as Rooms.IndividualRoom;
+                        if (r.Populated = true)
+                        {
+                        
+                            Console.WriteLine("{0}, {1}, {2}", row[0], row[1], r.DistanceDescription);
+                        }
+                    
+                    }
 
             }
-            
+               
+            }
         }
 
-        internal void check(Player _player)
+        internal void Check(Player player)
         {
             throw new NotImplementedException();
         }
 
-        internal void help(Player _player)
+        internal void Help(Player player)
         {
             throw new NotImplementedException();
         }
 
-        internal void terminate(Player _player, Rooms _rooms, DataTable _roomTable, Instructions _instructions)
+        internal void Terminate(Player player, Instructions instructions)
         {
-            Console.WriteLine("Are you sure you want to terminate? This will reset your game, Y/N?");
-            string playerInput = Console.ReadLine();
-            switch (playerInput.ToUpper())
+            Console.WriteLine("Are you sure you want to Terminate? This will reset your game, Y/N?");
+            string readLine = Console.ReadLine();
+            switch (readLine.ToUpper())
             {
                 case "Y":
-                    Program.ResetGame(_player);
+                    Program.ResetGame(player);
                     break;
                 case "N":
-                    _instructions.action(_player, _roomTable, "");
+                    instructions.action(player, "");
                     break;
             }
 
