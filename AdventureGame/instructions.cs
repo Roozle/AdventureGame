@@ -6,7 +6,7 @@ namespace AdventureGame
     class Instructions
     {
 
-        internal void action(Player player, string p = "", string _action ="LOOK")
+        internal void Action(Player player, string p = "", string _action ="LOOK")
         {
             int playerXPos = player.playerXPos;
             int playerYPos = player.playerYPos;
@@ -24,7 +24,7 @@ namespace AdventureGame
                     playerYPos = player.playerYPos - 1;
                     break;
                 case "WEST":
-                    playerYPos = player.playerYPos - 1;
+                    playerXPos = player.playerXPos - 1;
                     break;
             }
 
@@ -53,6 +53,7 @@ namespace AdventureGame
 
                             Rooms.IndividualRoom r = new Rooms.IndividualRoom();
                             r = row[2] as Rooms.IndividualRoom;
+
 
                             Console.WriteLine("{0}, {1}, {2}", row[0], row[1], r.Description);
                     }
@@ -94,7 +95,7 @@ namespace AdventureGame
                     Program.ResetGame(player);
                     break;
                 case "N":
-                    instructions.action(player, "");
+                    instructions.Action(player, "");
                     break;
             }
 

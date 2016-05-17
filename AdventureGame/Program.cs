@@ -41,31 +41,31 @@ namespace AdventureGame
                             Console.WriteLine("I also need a direction");
                             break;
                         case "MOVE NORTH":
-                            instructions.action(player, "NORTH", "MOVE");
+                            instructions.Action(player, "NORTH", "MOVE");
                             break;
                         case "MOVE EAST":
-                            instructions.action(player, "EAST", "MOVE");
+                            instructions.Action(player, "EAST", "MOVE");
                             break;
                         case "MOVE SOUTH":
-                            instructions.action(player, "SOUTH", "MOVE");
+                            instructions.Action(player, "SOUTH", "MOVE");
                             break;
                         case "MOVE WEST":
-                            instructions.action(player, "WEST", "MOVE");
+                            instructions.Action(player, "WEST", "MOVE");
                             break;
                         case "LOOK":
-                            instructions.action(player,"", "");
+                            instructions.Action(player,"", "");
                             break;
                         case "LOOK NORTH":
-                            instructions.action(player, "NORTH");
+                            instructions.Action(player, "NORTH");
                             break;
                         case "LOOK EAST":
-                            instructions.action(player, "EAST");
+                            instructions.Action(player, "EAST");
                             break;
                         case "LOOK SOUTH":
-                            instructions.action(player, "SOUTH");
+                            instructions.Action(player, "SOUTH");
                             break;
                         case "LOOK WEST":
-                            instructions.action(player, "WEST");
+                            instructions.Action(player, "WEST");
                             break;
                         case "TERMINATE":
                             instructions.Terminate(player, instructions);
