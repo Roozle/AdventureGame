@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AdventureGame
 {
@@ -20,14 +21,15 @@ namespace AdventureGame
           public RoomStateEnum RoomState {get;set;}
           public bool Populated { get; set; }
           public int CheckCounter { get; set; }
+
         }
     public DataTable InitialiseRooms(Player player)
     {
-	   player.roomTable.Columns.Add("PlayerX", typeof(int));
-	   player.roomTable.Columns.Add("PlayerY", typeof(int));
-	   player.roomTable.Columns.Add("RoomClass", typeof(IndividualRoom));
+	   player.RoomTable.Columns.Add("PlayerX", typeof(int));
+	   player.RoomTable.Columns.Add("PlayerY", typeof(int));
+	   player.RoomTable.Columns.Add("RoomClass", typeof(IndividualRoom));
 
-        player.roomTable.Rows.Add(5, 5, new IndividualRoom
+        player.RoomTable.Rows.Add(5, 5, new IndividualRoom
         {
             DistanceDescription = "There is an open field, smoke plumes from the EAST, to the SOUTH is an old cabin, to the WEST, the charred remains of a forest",
             Description = "You are in an open field, the ground appears scorched",
@@ -37,7 +39,7 @@ namespace AdventureGame
             Populated = true,
             CheckCounter = 0
         });
-        player.roomTable.Rows.Add(6, 5, new IndividualRoom
+        player.RoomTable.Rows.Add(6, 5, new IndividualRoom
         {
             DistanceDescription = "You see a bright fire in the distance, an old wooden shed extends a cabin to the SOUTH",
             Description = "A small fire burns brightly, brighter than one would expect given its size, the surrounding area is badly scorched",
@@ -47,10 +49,7 @@ namespace AdventureGame
             CheckCounter = 0
         });
 
-	    return player.roomTable;
+	    return player.RoomTable;
     }
-
-
-
     }
 }

@@ -7,7 +7,7 @@ namespace AdventureGame
 {
     public class Player
     {
-        public enum PlayerStateEnum 
+        public enum PlayerStateEnum
         {
             Alive,
             Dead, 
@@ -15,23 +15,23 @@ namespace AdventureGame
             Moving, 
             Busy
         }
-        public Rooms rooms = new Rooms();
-        public DataTable roomTable = new DataTable();
-        public Inventory inventory = new Inventory();
-        public Dictionary<string, int> playerInventory = new Dictionary<string, int>();
-        public PlayerStateEnum playerState;
-        public int playerXPos;
-        public int playerYPos;
+        public Rooms Rooms = new Rooms();
+        public DataTable RoomTable = new DataTable();
+        public Inventory Inventory = new Inventory();
+        public Dictionary<string, int> PlayerInventory = new Dictionary<string, int>();
+        public PlayerStateEnum PlayerState;
+        public int PlayerXPos;
+        public int PlayerYPos;
 
-        public string spawnPlayer()
+        public string SpawnPlayer()
         {
             //reset state
-            playerState = PlayerStateEnum.Alive;
+            PlayerState = PlayerStateEnum.Alive;
             //reset map position
-            playerXPos = 5;
-            playerYPos = 5;
+            PlayerXPos = 5;
+            PlayerYPos = 5;
 
-            inventory.initInventory(playerInventory);
+            Inventory.InitInventory(PlayerInventory);
 
             return "Game reset";
         }

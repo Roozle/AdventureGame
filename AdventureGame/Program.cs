@@ -14,7 +14,7 @@ namespace AdventureGame
 
         public static Player ResetGame(Player player)
         {
-            Console.WriteLine(player.spawnPlayer());
+            Console.WriteLine(player.SpawnPlayer());
             new Rooms().InitialiseRooms(player);
             return player;
         }
